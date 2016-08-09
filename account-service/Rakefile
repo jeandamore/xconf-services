@@ -1,0 +1,14 @@
+$: << File.join(File.dirname(__FILE__), "lib")
+
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec, :tag) do |t, task_args|
+    t.rspec_opts = "--format documentation --color"
+end
+
+namespace :server do
+  desc 'Run the server'
+  task :run do
+    sh 'rackup', '--env', ENV['RACK_ENV'], '--port', ENV['RACK_PORT'], '--server', 'thin'
+  end
+end
