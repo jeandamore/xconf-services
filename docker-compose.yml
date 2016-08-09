@@ -1,17 +1,17 @@
-registration:
+registration-service:
   image: registration-service
   ports: 
-    - "127.0.0.1:3000:4000"
+    - "3000:4000"
   links:
-    - "account:account-service"
+    - "account-service"
   environment:
     RACK_PORT: 4000
-    RACK_ENV: development
+    RACK_ENV: production
 
-account:
+account-service:
   image: account-service
   ports:
-    - "127.0.0.1:3001:4001"
+    - "3001:4001"
   environment:
     RACK_PORT: 4001
-    RACK_ENV: development
+    RACK_ENV: production
