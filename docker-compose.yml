@@ -1,9 +1,7 @@
 registration:
   image: registration-service
   ports: 
-    - "3000:4000"
-  expose: 
-    - "4000"
+    - "127.0.0.1:3000:4000"
   links:
     - "account:account-service"
   environment:
@@ -13,9 +11,7 @@ registration:
 account:
   image: account-service
   ports:
-    - "3001:4001"
-  expose: 
-    - "4001"
+    - "127.0.0.1:3001:4001"
   environment:
     RACK_PORT: 4001
     RACK_ENV: development
