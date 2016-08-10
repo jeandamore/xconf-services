@@ -1,0 +1,43 @@
+{
+  "consumer": {
+    "name": "client"
+  },
+  "provider": {
+    "name": "registration-service"
+  },
+  "interactions": [
+    {
+      "description": "a health check request",
+      "provider_state": "ready",
+      "request": {
+        "method": "get",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "Registration Service is up"
+      }
+    },
+    {
+      "description": "a new registration request",
+      "provider_state": "ready",
+      "request": {
+        "method": "post",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": ""
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "2.0.0"
+  }
+}
