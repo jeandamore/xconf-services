@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export RACK_ENV=production
+
 export SERVICE_NAME=$(basename "$PWD")
 echo "Will execute target $1 for $SERVICE_NAME"
 
@@ -21,7 +23,6 @@ preflight() {
 }
 
 start() {
-	set RACK_ENV=development
 	set RACK_PORT=3000
 	bundle exec rake spec server:run 
 }

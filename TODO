@@ -1,4 +1,4 @@
-- remove RACK_ENV
+- removed the 4xxx ports
 - only bundle what is needed (not rspec)
 
 - push to Docker Hub
@@ -6,6 +6,7 @@
 - fix docker dev workflow
 - messaging container
 
+- doctor
 - add contract testing
 - call account service from registration service
 - add email service
