@@ -1,0 +1,18 @@
+- remove RACK_ENV
+- only bundle what is needed (not rspec)
+
+- push to Docker Hub
+- service template
+- fix docker dev workflow
+- messaging container
+
+- add contract testing
+- call account service from registration service
+- add email service
+- implement use case : registration -> account -> email
+- add messaging
+- re-implement use case : registration -> account -> email
+- investigate concerns
+	- loss of services
+	- leader election
+	- versioning of messages
