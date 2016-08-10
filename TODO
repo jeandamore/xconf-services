@@ -1,4 +1,3 @@
-- removed the 4xxx ports
 - run bundle install before copying the app in the Dockerfile
 
 - push to Docker Hub

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export RACK_ENV=production
+export RACK_PORT=3001
 
 export SERVICE_NAME=$(basename "$PWD")
 echo "Will execute target $1 for $SERVICE_NAME"
@@ -10,7 +11,7 @@ build() {
 }
 
 run() {
-	docker run -it --name $SERVICE_NAME -d -p 3001:4001 --env RACK_PORT=4001 $SERVICE_NAME
+	docker run -it --name $SERVICE_NAME -d -p $RACK_PORT:$RACK_PORT --env RACK_PORT=$RACK_PORT $SERVICE_NAME
 }
 
 preflight() {	
@@ -23,7 +24,6 @@ preflight() {
 }
 
 start() {
-	set RACK_PORT=3000
 	bundle exec rake spec server:run 
 }
 
