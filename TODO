@@ -3,8 +3,7 @@
 - service template
 - messaging container
 
-- doctor
-- add contract testing
+- implement account service
 - call account service from registration service
 - add email service
 - implement use case : registration -> account -> email
