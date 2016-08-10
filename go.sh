@@ -1,7 +1,13 @@
 #!/bin/bash
 
+declare -a services=(			\
+	'account-service' 			\
+	'registration-service'	\
+	)
+
 init() {
 	clean
+	test
 	up
 	sleep 2
 	doctor
@@ -16,8 +22,17 @@ clean() {
 }
 
 doctor() {
-	_health account-service
-	_health registration-service
+	for service in "${services[@]}"
+	do
+		_health $service
+	done
+}
+
+test() {
+	for service in "${services[@]}"
+	do
+		_test $service
+	done
 }
 
 dive() {
@@ -32,6 +47,14 @@ _health() {
 	echo "" 
 }
 
+_test() {
+	echo "Will test $1" 
+	pushd $1 >> /dev/null
+	./go.sh test
+	popd >> /dev/null 
+	echo "" 
+}
+
 
 if [ $# -eq 0 ]; then
 	init
@@ -39,8 +62,9 @@ elif ([ $1 == "clean" 	] \
 	||	[ $1 == "init" 		] \
 	||	[ $1 == "dive" 		] \
 	||	[ $1 == "doctor" 	] \
+	||	[ $1 == "test" 		] \
 	||  [ $1 == "up"  		]); then
 	$1 $2
 else
-	echo "Usage: go.sh [clean|init|dive|doctor|up] "
+	echo "Usage: go.sh [clean|init|dive|doctor|test|up] "
 fi
