@@ -1,8 +1,6 @@
-- remove gem install bundler from Dockerfile
 
 - push to Docker Hub
 - service template
-- fix docker dev workflow
 - messaging container
 
 - doctor

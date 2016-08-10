@@ -1,8 +1,5 @@
 FROM ruby:2.3.1
 
-# Install bundler
-RUN gem install bundler --no-ri --no-rdoc
-
 # Install the gems
 WORKDIR /tmp 
 ADD Gemfile .
