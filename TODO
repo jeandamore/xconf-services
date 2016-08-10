@@ -1,5 +1,5 @@
 - removed the 4xxx ports
-- only bundle what is needed (not rspec)
+- run bundle install before copying the app in the Dockerfile
 
 - push to Docker Hub
 - service template
