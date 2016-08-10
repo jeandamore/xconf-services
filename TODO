@@ -1,4 +1,4 @@
-- run bundle install before copying the app in the Dockerfile
+- remove gem install bundler from Dockerfile
 
 - push to Docker Hub
 - service template
