@@ -1,0 +1,8 @@
+$: << File.join(File.dirname(__FILE__), "lib")
+
+namespace :server do
+  desc 'Run the server'
+  task :run do
+    sh 'rackup', '--env', ENV['RACK_ENV'], '--port', ENV['RACK_PORT'], '--server', 'thin'
+  end
+end
