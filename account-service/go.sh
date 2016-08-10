@@ -4,7 +4,6 @@ export RACK_ENV=production
 export RACK_PORT=3001
 
 export SERVICE_NAME=$(basename "$PWD")
-echo "Will execute target $1 for $SERVICE_NAME"
 
 build() {
 	docker build -t $SERVICE_NAME .
@@ -65,5 +64,5 @@ elif ([ $1 == "build" 		] \
 	||  [ $1 == "test" 			]); then
 	$1
 else
-	echo "Usage: go.sh [options] (type 'go.sh help' for more details)"
+	echo "Usage: go.sh [build|clean|health|pact|preflight|run|start|spec|test] "
 fi
