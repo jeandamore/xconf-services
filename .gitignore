@@ -1,4 +1,6 @@
 .DS_STORE
 **/.bundle
+**/log
+**/reports
 **/*.ruby*
 **/Gemfile.lock

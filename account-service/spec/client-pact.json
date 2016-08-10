@@ -1,0 +1,34 @@
+{
+  "consumer": {
+    "name": "client"
+  },
+  "provider": {
+    "name": "account-service"
+  },
+  "interactions": [
+    {
+      "description": "a request for an account",
+      "provider_state": "ready",
+      "request": {
+        "method": "get",
+        "path": "/the_name",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "the_name",
+          "balance": 42
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "2.0.0"
+  }
+}
