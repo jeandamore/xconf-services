@@ -39,9 +39,17 @@ start() {
 	bundle exec rake spec server:run 
 }
 
-test() {	
+spec() {	
 	bundle exec rake spec
+}
+
+pact() {	
 	bundle exec rake pact
+}
+
+test() {	
+	spec
+	pact
 }
 
 if [ $# -eq 0 ]; then
@@ -49,9 +57,11 @@ if [ $# -eq 0 ]; then
 elif ([ $1 == "build" 		] \
 	||  [ $1 == "clean"  		] \
 	||  [ $1 == "health"  	] \
+	||  [ $1 == "pact" 			] \
 	||  [ $1 == "preflight" ] \
 	||  [ $1 == "run"  			] \
 	||  [ $1 == "start" 		] \
+	||  [ $1 == "spec" 			] \
 	||  [ $1 == "test" 			]); then
 	$1
 else
