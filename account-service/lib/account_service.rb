@@ -31,7 +31,7 @@ class AccountService < Sinatra::Base
     content_type :json
     body JSON.generate({
       message: "Account Service is up",
-      accounts: @repository.accounts
+      accounts: @repository.accounts.map { |a| a.name } 
     })
   end
 
