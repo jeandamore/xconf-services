@@ -39,6 +39,11 @@ start() {
 	bundle exec rake server:run 
 }
 
+test() {	
+	spec
+	pact
+}
+
 spec() {	
 	bundle exec rake spec
 }

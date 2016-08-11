@@ -1,5 +1,5 @@
 registration-service:
-  build: ./registration-service
+  image: registration-service
   container_name: registration-service
   ports: 
     - "3000:3000"
@@ -11,7 +11,7 @@ registration-service:
     RACK_ENV: production
 
 account-service:
-  build: ./account-service
+  image: account-service
   container_name: account-service
   ports:
     - "3001:3001"

@@ -7,10 +7,11 @@ declare -a services=(			\
 
 init() {
 	clean
-	test
+	spec
 	up
 	sleep 2
 	doctor
+	pact
 }
 
 up() {
@@ -19,6 +20,11 @@ up() {
 
 clean() {
 	docker-compose kill
+	docker rm `docker ps --no-trunc -aq`
+}
+
+dive() {
+	docker exec -it $1 bash
 }
 
 doctor() {
@@ -28,15 +34,24 @@ doctor() {
 	done
 }
 
-test() {
+env() {
+	echo XENVIRONMENT=$XENVIRONMENT
+	echo RACK_ENV=$RACK_ENV
+	echo RACK_PORT=$RACK_PORT
+}
+
+spec() {
 	for service in "${services[@]}"
 	do
-		_test $service
+		_spec $service
 	done
 }
 
-dive() {
-	docker exec -it $1 bash
+pact() {
+	for service in "${services[@]}"
+	do
+		_pact $service
+	done
 }
 
 _health() {
@@ -47,10 +62,18 @@ _health() {
 	echo "" 
 }
 
-_test() {
-	echo "Will test $1" 
+_spec() {
+	echo "Will spec $1" 
 	pushd $1 >> /dev/null
-	./go.sh test
+	./go.sh spec
+	popd >> /dev/null 
+	echo "" 
+}
+
+_pact() {
+	echo "Will pact $1" 
+	pushd $1 >> /dev/null
+	./go.sh pact
 	popd >> /dev/null 
 	echo "" 
 }
@@ -59,12 +82,14 @@ _test() {
 if [ $# -eq 0 ]; then
 	init
 elif ([ $1 == "clean" 	] \
+	||	[ $1 == "env" 		] \
 	||	[ $1 == "init" 		] \
 	||	[ $1 == "dive" 		] \
 	||	[ $1 == "doctor" 	] \
-	||	[ $1 == "test" 		] \
+	||	[ $1 == "pact" 		] \
+	||	[ $1 == "spec" 		] \
 	||  [ $1 == "up"  		]); then
 	$1 $2
 else
-	echo "Usage: go.sh [clean|init|dive|doctor|test|up] "
+	echo "Usage: go.sh [clean|init|dive|doctor|spec|pact|up] "
 fi
