@@ -8,14 +8,18 @@ declare -a services=(			\
 init() {
 	clean
 	spec
+	build
 	up
 	sleep 2
 	doctor
 	pact
 }
 
-up() {
-	docker-compose up &
+build() {
+	for service in "${services[@]}"
+	do
+		_build $service
+	done
 }
 
 clean() {
@@ -52,6 +56,18 @@ pact() {
 	do
 		_pact $service
 	done
+}
+
+up() {
+	docker-compose up &
+}
+
+_build() {
+	echo "Will build $1" 
+	pushd $1 >> /dev/null
+	./go.sh build
+	popd >> /dev/null 
+	echo "" 
 }
 
 _health() {
@@ -91,5 +107,5 @@ elif ([ $1 == "clean" 	] \
 	||  [ $1 == "up"  		]); then
 	$1 $2
 else
-	echo "Usage: go.sh [clean|init|dive|doctor|spec|pact|up] "
+	echo "Usage: go.sh [build|clean|init|dive|doctor|spec|pact|up] "
 fi
