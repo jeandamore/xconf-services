@@ -28,7 +28,11 @@ class RegistrationService < Sinatra::Base
   end
 
   get '/' do
-    "Registration Service is up"
+    content_type :json
+    body JSON.generate({
+      message: "Registration Service is up",
+      port: ENV['RACK_PORT'] 
+    })
   end
 
   post '/' do

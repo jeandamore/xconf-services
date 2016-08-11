@@ -31,6 +31,7 @@ class AccountService < Sinatra::Base
     content_type :json
     body JSON.generate({
       message: "Account Service is up",
+      port: ENV['RACK_PORT'],
       accounts: @repository.accounts.map { |a| a.name } 
     })
   end

@@ -18,7 +18,9 @@
       },
       "response": {
         "status": 200,
-        "body": "Registration Service is up"
+        "body": {
+          "message": "Registration Service is up"
+        }
       }
     },
     {

@@ -1,32 +1,47 @@
-registration-service:
-  image: registration-service
-  container_name: registration-service
-  ports: 
-    - "3000:3000"
-  links:
-    - "account-service"
-    - "email-service"
-  environment:
-    XENVIRONMENT: production
-    RACK_PORT: 3000
-    RACK_ENV: production
+version: '2'
 
-account-service:
-  image: account-service
-  container_name: account-service
-  ports:
-    - "3001:3001"
-  environment:
-    XENVIRONMENT: production
-    RACK_PORT: 3001
-    RACK_ENV: production
+services:
 
-email-service:
-  image: email-service
-  container_name: email-service
-  ports:
-    - "3002:3002"
-  environment:
-    XENVIRONMENT: production
-    RACK_PORT: 3002
-    RACK_ENV: production
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+
+  registration-service:
+    image: registration-service
+    container_name: registration-service
+    ports: 
+      - "3000:3000"
+    links:
+      - "account-service"
+      - "email-service"
+    environment:
+      VIRTUAL_HOST: registration-service
+      XENVIRONMENT: production
+      RACK_PORT: 3000
+      RACK_ENV: production
+
+  account-service:
+    image: account-service
+    container_name: account-service
+    ports:
+      - "3001:3001"
+    environment:
+      VIRTUAL_HOST: account-service
+      XENVIRONMENT: production
+      RACK_PORT: 3001
+      RACK_ENV: production
+
+  email-service:
+    image: email-service
+    container_name: email-service
+    ports:
+      - "3002:3002"
+    environment:
+      VIRTUAL_HOST: email-service
+      XENVIRONMENT: production
+      RACK_PORT: 3002
+      RACK_ENV: production

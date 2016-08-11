@@ -29,6 +29,7 @@ class EmailService < Sinatra::Base
     content_type :json
     body JSON.generate({
       message: "Email Service is up",
+      port: ENV['RACK_PORT']
     })
     status 200
   end
