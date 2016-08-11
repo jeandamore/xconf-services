@@ -1,7 +1,7 @@
 FROM ruby:2.3.1
 
 # Install the gems
-WORKDIR /tmp 
+WORKDIR /tmp/registration-service 
 ADD Gemfile .
 ADD Gemfile.lock .
 RUN bundle install --without development test

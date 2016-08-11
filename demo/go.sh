@@ -1,8 +1,9 @@
 #!/bin/bash
 
 declare -a services=(			\
-	'account-service' 			\
 	'registration-service'	\
+	'account-service' 			\
+	'email-service' 				\
 	)
 
 init() {
@@ -24,7 +25,7 @@ build() {
 
 clean() {
 	docker-compose kill
-	docker rm `docker ps --no-trunc -aq`
+	docker rm -f `docker ps --no-trunc -aq`
 }
 
 dive() {

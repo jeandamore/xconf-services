@@ -5,6 +5,7 @@ registration-service:
     - "3000:3000"
   links:
     - "account-service"
+    - "email-service"
   environment:
     XENVIRONMENT: production
     RACK_PORT: 3000
@@ -18,4 +19,14 @@ account-service:
   environment:
     XENVIRONMENT: production
     RACK_PORT: 3001
+    RACK_ENV: production
+
+email-service:
+  image: email-service
+  container_name: email-service
+  ports:
+    - "3002:3002"
+  environment:
+    XENVIRONMENT: production
+    RACK_PORT: 3002
     RACK_ENV: production

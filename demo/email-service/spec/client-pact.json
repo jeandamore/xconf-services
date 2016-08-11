@@ -1,0 +1,30 @@
+{
+  "consumer": {
+    "name": "client"
+  },
+  "provider": {
+    "name": "account-service"
+  },
+  "interactions": [
+    {
+      "description": "a health check request",
+      "provider_state": "the service is ready",
+      "request": {
+        "method": "get",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Email Service is up"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "2.0.0"
+  }
+}

@@ -1,10 +1,15 @@
 
-- push to Docker Hub
-- service template
-- messaging container
 
-- add email service
+
 - implement use case : registration -> account -> email
+- change URL for health check
+- add nginx
+- fix health check response for registration-service
+- versioning
+- service template
+- push to Docker Hub
+
+
 - add messaging
 - re-implement use case : registration -> account -> email
 - investigate concerns
