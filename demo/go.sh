@@ -59,6 +59,10 @@ spec() {
 	done
 }
 
+scale() {
+	docker-compose scale $1=$2
+}
+
 pact() {
 	for service in "${services[@]}"
 	do
@@ -119,8 +123,9 @@ elif ([ $1 == "clean" 	] \
 	||	[ $1 == "log" 		] \
 	||	[ $1 == "pact" 		] \
 	||	[ $1 == "spec" 		] \
+	||	[ $1 == "scale" 	] \
 	||  [ $1 == "up"  		]); then
-	$1 $2
+	$1 $2 $3
 else
-	echo "Usage: go.sh [build|clean|dive|doctor|init|log|spec|pact|up] "
+	echo "Usage: go.sh [build|clean|dive|doctor|init|log|spec|scale|pact|up] "
 fi
