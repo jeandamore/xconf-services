@@ -32,8 +32,7 @@ class AccountService < Sinatra::Base
   end
 
   post '/' do
-    @repository.add AccountModel.new(params[:name.to_s])
-    status 201
+    status @repository.add(AccountModel.new(params[:name.to_s])).nil? ? 409 : 201
   end
 
   get '/:name' do

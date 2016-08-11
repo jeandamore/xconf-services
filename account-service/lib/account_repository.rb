@@ -8,7 +8,12 @@ class AccountRepository
   end  
 
 	def add(account)
-		@accounts << account
+		if exists?(account.name) 
+			nil
+		else
+			@accounts << account
+			account
+		end
 	end
 
 	def find(name)
