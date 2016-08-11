@@ -18,12 +18,12 @@ run() {
 }
 
 clean() {
+	docker rm -f nginx-proxy
 	docker rm -f $SERVICE_NAME
-	docker rm -f ngnix-proxy
 }
 
 health() {
-	curl -f http://$SERVICE_NAME:$RACK_PORT
+	curl -f http://$SERVICE_NAME:$RACK_PORT/health
 }
 
 preflight() {	

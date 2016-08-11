@@ -12,7 +12,7 @@ describe 'EmailService' do
   end
 
   it "shoud have a GET health endpoint" do
-    get '/'
+    get '/health'
     expect(last_response.status).not_to eq(404)
   end
 

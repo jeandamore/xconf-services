@@ -27,7 +27,7 @@ class AccountService < Sinatra::Base
     {error: e.message, backtrace: e.backtrace}.to_json
   end
 
-  get '/' do
+  get '/health' do
     content_type :json
     body JSON.generate({
       message: "Account Service is up",

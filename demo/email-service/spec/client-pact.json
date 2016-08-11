@@ -11,7 +11,7 @@
       "provider_state": "the service is ready",
       "request": {
         "method": "get",
-        "path": "/",
+        "path": "/health",
         "headers": {
           "Accept": "application/json"
         }
