@@ -16,6 +16,7 @@ RUN chown -R registration-service-user /home/registration-service
 USER registration-service-user
 
 # Run the app
+ENV XENVIRONMENT=production
 ENV RACK_ENV=production
 ENV RACK_PORT=3000
 CMD ["bundle", "exec", "rake", "--rakefile", "Rakefile.dock", "server:run"]

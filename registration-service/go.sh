@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export XENVIRONMENT=${XENVIRONMENT:-local}
 export RACK_PORT=${RACK_PORT:-3000}
 export RACK_ENV=production
 export SERVICE_NAME=$(basename "$PWD")
@@ -9,6 +10,7 @@ build() {
 }
 
 run() {
+	export RACK_PORT=3000
 	docker run -it --name $SERVICE_NAME --link account-service:account-service -d -p $RACK_PORT:$RACK_PORT --env RACK_PORT=$RACK_PORT $SERVICE_NAME
 }
 

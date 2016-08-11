@@ -16,6 +16,7 @@ RUN chown -R account-service-user /home/account-service
 USER account-service-user
 
 # Run the app
+ENV XENVIRONMENT=production
 ENV RACK_ENV=production
 ENV RACK_PORT=3001
 CMD ["bundle", "exec", "rake", "--rakefile", "Rakefile.dock", "server:run"]

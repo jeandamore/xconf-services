@@ -8,7 +8,7 @@
   "interactions": [
     {
       "description": "a health check request",
-      "provider_state": "ready",
+      "provider_state": "the service is ready",
       "request": {
         "method": "get",
         "path": "/",
@@ -22,18 +22,37 @@
       }
     },
     {
-      "description": "a new registration request",
-      "provider_state": "ready",
+      "description": "a registration request",
+      "provider_state": "new user",
       "request": {
         "method": "post",
         "path": "/",
         "headers": {
           "Accept": "application/json"
+        },
+        "body":  {
+          "email": "new_user@email.com"
         }
       },
       "response": {
-        "status": 200,
-        "body": ""
+        "status": 201
+      }
+    },
+    {
+      "description": "a registration request",
+      "provider_state": "user already exists",
+      "request": {
+        "method": "post",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body":  {
+          "email": "existing_user@email.com"
+        }
+      },
+      "response": {
+        "status": 422
       }
     }
   ],

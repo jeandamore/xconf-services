@@ -6,6 +6,7 @@ registration-service:
   links:
     - "account-service"
   environment:
+    XENVIRONMENT: production
     RACK_PORT: 3000
     RACK_ENV: production
 
@@ -15,5 +16,6 @@ account-service:
   ports:
     - "3001:3001"
   environment:
+    XENVIRONMENT: production
     RACK_PORT: 3001
     RACK_ENV: production
