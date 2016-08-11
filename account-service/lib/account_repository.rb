@@ -3,6 +3,8 @@ require 'singleton'
 class AccountRepository
   include Singleton
 
+  attr_reader :accounts
+
 	def initialize
     @accounts = Array.new
   end  

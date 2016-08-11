@@ -28,11 +28,15 @@ class AccountService < Sinatra::Base
   end
 
   get '/' do
-    "Account Service is up"
+    content_type :json
+    body JSON.generate({
+      message: "Account Service is up",
+      accounts: @repository.accounts
+    })
   end
 
   post '/' do
-    status @repository.add(AccountModel.new(params[:name.to_s])).nil? ? 409 : 201
+    status @repository.add(AccountModel.new(params[:name.to_s], params[:balance.to_s])).nil? ? 409 : 201
   end
 
   get '/:name' do
