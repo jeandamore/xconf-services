@@ -3,7 +3,6 @@
 - service template
 - messaging container
 
-- implement account service
 - call account service from registration service
 - add email service
 - implement use case : registration -> account -> email

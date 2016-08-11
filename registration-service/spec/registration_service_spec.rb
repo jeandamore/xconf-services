@@ -8,17 +8,17 @@ describe 'RegistrationService' do
   include Rack::Test::Methods
 
   def app
-    RegistrationService::Api.new
+    RegistrationService.new
   end
 
   it "shoud have a GET health endpoint" do
     get '/'
-    expect(last_response.status).to eq(200)
+    expect(last_response.status).not_to eq(404)
   end
 
   it "shoud have a POST registration endpoint" do
     post '/'
-    expect(last_response.status).to eq(200)
+    expect(last_response.status).not_to eq(404)
   end
 
 end

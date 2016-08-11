@@ -1,3 +1,3 @@
 require File.dirname(__FILE__) + '/lib/registration_service'
 
-run RegistrationService::Api
+run RegistrationService
