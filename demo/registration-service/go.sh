@@ -14,7 +14,7 @@ proxy() {
 }
 
 run() {
-	docker run -it --name $SERVICE_NAME --link account-service:account-service -d -p $RACK_PORT --env RACK_PORT=$RACK_PORT --env VIRTUAL_HOST=$SERVICE_NAME $SERVICE_NAME
+	docker run -it --name $SERVICE_NAME -d -p $RACK_PORT --env RACK_PORT=$RACK_PORT --env VIRTUAL_HOST=$SERVICE_NAME $SERVICE_NAME
 }
 
 clean() {

@@ -15,9 +15,6 @@ services:
     container_name: registration-service
     ports: 
       - "8080"
-    links:
-      - "account-service"
-      - "email-service"
     environment:
       VIRTUAL_HOST: registration-service
       XENVIRONMENT: development
