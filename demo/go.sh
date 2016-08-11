@@ -11,7 +11,7 @@ init() {
 	spec
 	build
 	up
-	sleep 2
+	sleep 5
 	doctor
 	pact
 }

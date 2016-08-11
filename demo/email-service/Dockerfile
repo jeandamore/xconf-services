@@ -18,5 +18,5 @@ USER email-service-user
 # Run the app
 ENV XENVIRONMENT=production
 ENV RACK_ENV=production
-ENV RACK_PORT=3002
+ENV RACK_PORT=8080
 CMD ["bundle", "exec", "rake", "--rakefile", "Rakefile.dock", "server:run"]

@@ -1,25 +1,29 @@
 #!/bin/bash
 
-export XENVIRONMENT=${XENVIRONMENT:-local}
-export RACK_PORT=${RACK_PORT:-3002}
-export RACK_ENV=$production
+export XENVIRONMENT=${XENVIRONMENT:-development}
+export RACK_PORT=8080
+export RACK_ENV=production
 export SERVICE_NAME=$(basename "$PWD")
 
 build() {
 	docker build -t $SERVICE_NAME .
 }
 
+proxy() {
+	docker run -it --name nginx-proxy -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy 
+}
+
 run() {
-	export RACK_PORT=3002
-	docker run -it --name $SERVICE_NAME -d -p $RACK_PORT:$RACK_PORT --env RACK_PORT=$RACK_PORT $SERVICE_NAME
+	docker run -it --name $SERVICE_NAME -d -p $RACK_PORT --env RACK_PORT=$RACK_PORT --env VIRTUAL_HOST=$SERVICE_NAME $SERVICE_NAME
 }
 
 clean() {
 	docker rm -f $SERVICE_NAME
+	docker rm -f ngnix-proxy
 }
 
 health() {
-	curl -f http://127.0.0.1:$RACK_PORT
+	curl -f http://$SERVICE_NAME:$RACK_PORT
 }
 
 preflight() {	
@@ -30,10 +34,10 @@ preflight() {
 	bundle install
 	bundle exec rake
 	build
+	proxy
 	run
 	sleep 1
 	health
-	clean
 }
 
 start() {
@@ -60,11 +64,12 @@ elif ([ $1 == "build" 		] \
 	||  [ $1 == "health"  	] \
 	||  [ $1 == "pact" 			] \
 	||  [ $1 == "preflight" ] \
+	||  [ $1 == "proxy"  		] \
 	||  [ $1 == "run"  			] \
 	||  [ $1 == "start" 		] \
 	||  [ $1 == "spec" 			] \
 	||  [ $1 == "test" 			]); then
 	$1
 else
-	echo "Usage: go.sh [build|clean|health|pact|preflight|run|start|spec|test] "
+	echo "Usage: go.sh [build|clean|health|pact|preflight|proxy|run|start|spec|test] "
 fi
