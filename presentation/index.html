@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+	<head>
+    <meta charset="utf-8">
+
+    <title>ThoughtWorks Australia XConf 2016</title>
+
+    <meta name="description" content="ThoughtWorks Australia XConf 2016">
+    <meta name="author" content="Jean D'Amore">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/thoughtworks.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+	<body>
+    <div class="reveal">
+      <div class="footer">
+        Copyright (c) ThoughtWorks 2015-2016.  Provided for personal use only and not to be copied or distributed.
+       </div>
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section class="title">
+          <h1>Scaling Services with Choreography</h1>
+          <h2>ThoughtWorks Australia XConf 2016</h2>
+          <h3></h3>
+        </section>
+
+        <section id="menu" class="menu">
+          <h2> CONTENT </h2>
+          <table style="font-size:0.8em">
+            <thead class="purple">
+              <tr>
+                <th>
+                </th>
+                <th>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><a href="#/context">Context</a></strong></td>
+                <td>Why I chose this subject</td>
+              </tr>
+              <tr>
+                <td><strong><a href="#/scaling">Scaling</a></strong></td>
+                <td>Principles of scaling services</td>
+              </tr>
+              <tr>
+                <td><strong><a href="#/definitions">Definitions</a></strong></td>
+                <td>Choreography vs orchestration</td>
+              </tr>
+              <tr>
+                <td><strong><a href="#/options">Options</a></strong></td>
+                <td>What technology choices do we have</td>
+              </tr>
+              <tr>
+                <td><strong><a href="#/concerns">Concerns</a></strong></td>
+                <td>What makes it hard</td>
+              </tr>
+              <tr>
+                <td><strong><a href="#/implementation">Implementation</a></strong></td>
+                <td>Naming, versioning, failures, concurrency</td>
+              </tr>
+              <tr>
+                <td><strong><a href="#/conclusion">Conclusion</a></strong></td>
+                <td>Something really deep</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+
+        <section id="context" class="title">
+          <h2>Why I chose this subject</h2>
+          <hr>
+          <section>
+          </section>
+          <a class="homelink" href="#/menu">home</a>
+        </section>
+
+
+        <section id="scaling" class="title">
+          <h2>Principles of scaling services</h2>
+          <hr>
+          <section>
+          </section>
+          <a class="homelink" href="#/menu">home</a>
+        </section>
+
+
+        <section id="defintions" class="title">
+          <h2>Choreography vs orchestration</h2>
+          <hr>
+          <section>
+          </section>
+          <a class="homelink" href="#/menu">home</a>
+        </section>
+
+
+        <section id="options" class="title">
+          <h2>What technology choices do we have</h2>
+          <hr>
+          <section>
+          </section>
+          <a class="homelink" href="#/menu">home</a>
+        </section>
+
+
+        <section id="concerns" class="title">
+          <h2>What makes it hard</h2>
+          <hr>
+          <section>
+          </section>
+          <a class="homelink" href="#/menu">home</a>
+        </section>
+
+
+        <section id="implementation" class="title">
+          <h2>Implementation</h2>
+          <hr>
+          <section>
+          </section>
+          <a class="homelink" href="#/menu">home</a>
+        </section>
+
+
+        <section id="conclusion" class="title">
+          <h2>Conclusion</h2>
+          <hr>
+          <section>
+          </section>
+          <a class="homelink" href="#/menu">home</a>
+        </section>
+
+      </div>
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        hideAddressBar: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        minScale: 0.5,
+        maxScale: 2, // Give us some headroom to zoom in
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+
+	</body>
+</html>
