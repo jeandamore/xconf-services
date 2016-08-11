@@ -38,6 +38,13 @@ doctor() {
 	done
 }
 
+log() {
+	for service in "${services[@]}"
+	do
+		_log $service
+	done
+}
+
 env() {
 	echo XENVIRONMENT=$XENVIRONMENT
 	echo RACK_ENV=$RACK_ENV
@@ -94,18 +101,25 @@ _pact() {
 	echo "" 
 }
 
+_log() {
+	echo "Will get container log for $1" 
+	docker logs -f $1 &
+	echo "" 
+}
+
 
 if [ $# -eq 0 ]; then
 	init
 elif ([ $1 == "clean" 	] \
 	||	[ $1 == "env" 		] \
-	||	[ $1 == "init" 		] \
 	||	[ $1 == "dive" 		] \
 	||	[ $1 == "doctor" 	] \
+	||	[ $1 == "init" 		] \
+	||	[ $1 == "log" 		] \
 	||	[ $1 == "pact" 		] \
 	||	[ $1 == "spec" 		] \
 	||  [ $1 == "up"  		]); then
 	$1 $2
 else
-	echo "Usage: go.sh [build|clean|init|dive|doctor|spec|pact|up] "
+	echo "Usage: go.sh [build|clean|dive|doctor|init|log|spec|pact|up] "
 fi

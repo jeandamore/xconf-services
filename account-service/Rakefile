@@ -10,8 +10,8 @@ end
 task :pact_run => 'pact:verify'
 
 namespace :server do
-  desc 'Run the server'
   task :run do
+  	puts 'Run the server for ' + ENV['XENVIRONMENT']
     sh 'rackup', '--env', ENV['RACK_ENV'], '--port', ENV['RACK_PORT'], '--server', 'thin'
   end
 end
