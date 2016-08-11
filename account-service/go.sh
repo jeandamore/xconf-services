@@ -1,8 +1,7 @@
 #!/bin/bash
 
-export RACK_ENV=production
-export RACK_PORT=3001
-
+export RACK_PORT=${RACK_PORT:-3001}
+export RACK_ENV=${RACK_ENV:-production}
 export SERVICE_NAME=$(basename "$PWD")
 
 build() {
@@ -35,7 +34,9 @@ preflight() {
 }
 
 start() {
-	bundle exec rake spec server:run 
+	echo $RACK_PORT
+	echo $RACK_ENV
+	bundle exec rake server:run 
 }
 
 spec() {	
@@ -44,11 +45,6 @@ spec() {
 
 pact() {	
 	bundle exec rake pact
-}
-
-test() {	
-	spec
-	pact
 }
 
 if [ $# -eq 0 ]; then

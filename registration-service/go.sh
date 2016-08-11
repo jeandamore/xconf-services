@@ -1,8 +1,7 @@
 #!/bin/bash
 
-export RACK_ENV=production
-export RACK_PORT=3000
-
+export RACK_PORT=${RACK_PORT:-3000}
+export RACK_ENV=${RACK_ENV:-production}
 export SERVICE_NAME=$(basename "$PWD")
 
 build() {
@@ -35,7 +34,7 @@ preflight() {
 }
 
 start() {
-	bundle exec rake spec server:run 
+	bundle exec rake server:run 
 }
 
 test() {	
