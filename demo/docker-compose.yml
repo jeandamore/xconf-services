@@ -2,6 +2,13 @@ version: '2'
 
 services:
 
+  logspout:
+    image: gliderlabs/logspout
+    container_name: logspout
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    command: syslog+tls://logs4.papertrailapp.com:10242
+
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy
