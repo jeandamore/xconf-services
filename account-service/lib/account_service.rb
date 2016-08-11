@@ -37,7 +37,11 @@ class AccountService < Sinatra::Base
 
   get '/:name' do
     content_type :json
-    {:name => "#{params['name']}", :balance => 42}.to_json
+    account = @repository.find params[:name.to_s].to_s
+    unless account.nil?
+      body JSON.generate(account.as_json)
+    end
+    status = account.nil? ? 428 : 200
   end
 
 end

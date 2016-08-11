@@ -20,7 +20,7 @@ Pact.provider_states_for 'client' do
   provider_state 'there is an existing account' do
     set_up do
       repository = AccountRepository.instance
-      repository.add AccountModel.new("existing_account")
+      repository.add AccountModel.new("existing_account", 42)
     end
   end
 

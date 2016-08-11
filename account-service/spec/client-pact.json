@@ -66,12 +66,26 @@
         }
       },
       "response": {
-        "status": 428,
+        "status": 428
+      }
+    },
+    {
+      "description": "an account retrieval request",
+      "provider_state": "there is an existing account",
+      "request": {
+        "method": "get",
+        "path": "/existing_account",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
         "headers": {
           "Content-Type": "application/json"
         },
         "body": {
-          "name": "the_name",
+          "name": "existing_account",
           "balance": 42
         }
       }
