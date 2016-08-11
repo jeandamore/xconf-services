@@ -1,7 +1,5 @@
 
 - implement use case : registration -> account -> email
-- change URL for health check
-- add consul
 - versioning
 - account and email services pact into registration service
 - service template

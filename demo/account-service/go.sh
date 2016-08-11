@@ -36,7 +36,7 @@ preflight() {
 	build
 	proxy
 	run
-	sleep 1
+	sleep 2
 	health
 }
 

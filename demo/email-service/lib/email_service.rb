@@ -2,10 +2,12 @@ require 'sinatra/base'
 require 'json'
 
 require_relative 'email_model'
+require_relative 'email_repository'
 
 class EmailService < Sinatra::Base
 
   def initialize
+    @repository = EmailRepository.instance
   end
 
   before do
@@ -29,13 +31,21 @@ class EmailService < Sinatra::Base
     content_type :json
     body JSON.generate({
       message: "Email Service is up",
-      port: ENV['RACK_PORT']
+      port: ENV['RACK_PORT'],
+      emails: @repository.emails.map { |e| e.id } 
     })
     status 200
   end
 
   post '/' do
-    status 501
+    email = EmailModel.new(
+      params[:from.to_s], 
+      params[:to.to_s], 
+      params[:subject.to_s], 
+      params[:body.to_s]
+    )
+    @repository.add(email)
+    status 201
   end
 
 end

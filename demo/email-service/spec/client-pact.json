@@ -22,6 +22,26 @@
           "message": "Email Service is up"
         }
       }
+    },
+    {
+      "description": "a new email request",
+      "provider_state": "the service is ready",
+      "request": {
+        "method": "post",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body":  {
+          "from": "jdamore@thoughtworks.com",
+          "to": "jean.damore@email.com",
+          "subject": "test email service",
+          "body": "Hello From My Email!!"
+        }
+      },
+      "response": {
+        "status": 201
+      }
     }
   ],
   "metadata": {
