@@ -5,10 +5,12 @@ class Configuration
   @@config = OpenStruct.new({
 
     :development => {
-    	:account_service => 'http://account-service:8080'
+    	:account_service => 'http://account-service:8080',
+      :email_service => 'http://email-service:8080'
    	},
     :production => {
-    	:account_service => 'http://account-service.corsamore.com'
+    	:account_service => 'http://account.corsamore.com',
+      :email_service => 'http://email.corsamore.com'
     }
 
   })
