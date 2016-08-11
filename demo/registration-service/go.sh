@@ -23,6 +23,7 @@ health() {
 }
 
 preflight() {	
+	clean
 	rvm use 2.3.1
 	rvm gemset create $SERVICE_NAME
 	rvm gemset use $SERVICE_NAME

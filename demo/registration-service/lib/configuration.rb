@@ -5,10 +5,10 @@ class Configuration
   @@config = OpenStruct.new({
 
     :local => {
-    	:account_service => 'http://account-service:4001'
+    	:account_service => 'http://account-service:3001'
    	},
     :production => {
-    	:account_service => 'http://account-service:3001'
+    	:account_service => 'http://account-service:8080'
     }
 
   })

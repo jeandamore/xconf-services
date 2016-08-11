@@ -6,7 +6,6 @@
 - account and email services pact into registration service
 - service template
 - push to Docker Hub
-- replace ngnix by haproxy
 
 
 - add messaging
