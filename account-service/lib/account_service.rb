@@ -1,28 +1,44 @@
 require 'sinatra/base'
 require 'json'
 
-module AccountService
+require_relative 'account_repository'
+require_relative 'account_model'
 
-  class Api < Sinatra::Base
+class AccountService < Sinatra::Base
 
-    set :raise_errors, false
-    set :show_exceptions, false
-
-    error do
-      e = env['sinatra.error']
-      content_type :json
-      status 500
-      {error: e.message, backtrace: e.backtrace}.to_json
-    end
-
-    get '/' do
-      "Account Service is up"
-    end
-
-    get '/:name' do
-      content_type :json
-      {:name => "#{params['name']}", :balance => 42}.to_json
-    end
-
+  def initialize
+    @repository = AccountRepository.instance
   end
+
+  before do
+    if request.body.size > 0
+      request.body.rewind
+      @params = JSON.parse request.body.read
+    end
+  end
+
+  set :raise_errors, false
+  set :show_exceptions, false
+
+  error do
+    e = env['sinatra.error']
+    content_type :json
+    status 500
+    {error: e.message, backtrace: e.backtrace}.to_json
+  end
+
+  get '/' do
+    "Account Service is up"
+  end
+
+  post '/' do
+    @repository.add AccountModel.new(params[:name.to_s])
+    status 201
+  end
+
+  get '/:name' do
+    content_type :json
+    {:name => "#{params['name']}", :balance => 42}.to_json
+  end
+
 end

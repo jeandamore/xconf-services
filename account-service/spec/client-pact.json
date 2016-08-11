@@ -22,7 +22,24 @@
       }
     },
     {
-      "description": "an account request",
+      "description": "a new account creation request",
+      "provider_state": "ready",
+      "request": {
+        "method": "post",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body":  {
+          "name": "new_account_name"
+        }
+      },
+      "response": {
+        "status": 201
+      }
+    },
+    {
+      "description": "an account retrieval request",
       "provider_state": "ready",
       "request": {
         "method": "get",

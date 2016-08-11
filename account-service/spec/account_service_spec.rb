@@ -8,17 +8,22 @@ describe 'AccountService' do
   include Rack::Test::Methods
 
   def app
-    AccountService::Api.new
+    AccountService.new
   end
 
   it "shoud have a GET health endpoint" do
     get '/'
-    expect(last_response.status).to eq(200)
+    expect(last_response.status).not_to eq(404)
   end
 
   it "shoud have a GET account endpoint" do
     get '/name'
-    expect(last_response.status).to eq(200)
+    expect(last_response.status).not_to eq(404)
+  end
+
+  it "shoud have a POST account endpoint" do
+    post '/'
+    expect(last_response.status).not_to eq(404)
   end
 
 end
