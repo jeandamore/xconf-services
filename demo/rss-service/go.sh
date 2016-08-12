@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export XENVIRONMENT=${XENVIRONMENT:-development}
-export RACK_PORT=3001
+export RACK_PORT=8080
 export RACK_ENV=production
 export SERVICE_NAME=$(basename "$PWD")
 

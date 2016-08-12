@@ -1,0 +1,61 @@
+{
+  "consumer": {
+    "name": "client"
+  },
+  "provider": {
+    "name": "rss-service"
+  },
+  "interactions": [
+    {
+      "description": "a health check request",
+      "provider_state": "the service is ready",
+      "request": {
+        "method": "get",
+        "path": "/health",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Rss Service is up"
+        }
+      }
+    },
+    {
+      "description": "reading the feeds",
+      "provider_state": "the service is ready",
+      "request": {
+        "method": "get",
+        "path": "/"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a new post",
+      "provider_state": "the service is ready",
+      "request": {
+        "method": "post",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body":  { 
+  				"channel":"new_user",
+  				"version":"1.0",
+  				"title":"hey",
+  				"body":"again again"
+  			}
+      },
+      "response": {
+        "status": 201
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "2.0.0"
+  }
+}
