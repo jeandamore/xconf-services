@@ -72,12 +72,12 @@
                 <td>Choreography vs orchestration</td>
               </tr>
               <tr>
-                <td><strong><a href="#/options">Options</a></strong></td>
-                <td>What technology choices do we have</td>
-              </tr>
-              <tr>
                 <td><strong><a href="#/concerns">Concerns</a></strong></td>
                 <td>What makes it hard</td>
+              </tr>
+              <tr>
+                <td><strong><a href="#/options">Options</a></strong></td>
+                <td>What technology choices do we have</td>
               </tr>
               <tr>
                 <td><strong><a href="#/implementation">Implementation</a></strong></td>
@@ -96,7 +96,7 @@
           <h2>Be afraid of the Death Star</h2>
           <hr>
           <section>
-            <br>
+            <br><br>
             <img src="pics/death-star.png" alt="death-star" height="450"/>
             <p style="font-size: 0.3em; font-style: italic">https://twitter.com/adrianco/status/441883572618948608</p>
             <p style="font-size: 0.8em">Dealing with business processes that stretch across <br>the boundary of individual services is hard</p>
@@ -111,15 +111,15 @@
           <h2>Scaling what?</h2>
           <hr>
           <section>
-            <p style="font-size: 1.2em">Users<p>
+            <p class="topic">Users<p>
             <img src="pics/tron.png" alt="tron" width="700"/>
           </section>
           <section>
-            <p style="font-size: 1.2em">Features<p>
+            <p class="topic">Features<p>
             <img src="pics/tron_android.png" alt="tron_android" height="400"/>
           </section>
           <section>
-            <p style="font-size: 1.2em">Speed<p>
+            <p class="topic">Speed<p>
             <img src="pics/tron_speed.jpg" alt="tron_speed" width="700"/>
           </section>
           <section>
@@ -139,17 +139,17 @@
           </section>
           <section>
             <br>
-            <p>Orchestration</p>
+            <p class="topic">Orchestration</p>
             <img src="pics/orchestration_glyph.png" alt="orchestration glyphs"/>
           </section>
           <section>
             <br>
-            <p>Choreography</p>
+            <p class="topic">Choreography</p>
             <img src="pics/choreography_glyph.png" alt="choreography glyphs"/>
           </section>
           <section>
             <br>
-            <p>Not Choreography</p><br>
+            <p class="topic">Not Choreography</p><br>
             <img src="pics/not_choreography_glyph.png" alt="not choreography glyphs"/>
           </section>
           <section>
@@ -158,20 +158,26 @@
         </section>
 
 
-        <section id="options" class="title">
-          <h2>What technology choices do we have</h2>
+        <section id="concerns" class="title">
+          <h2>What makes it scary</h2>
           <hr>
           <section>
-            <br>
-            <p>Feeds</p>
+            <p class="topic">Architecture</p>
+            <ul>
+              <li>Asynchronous
+              <li>No standard, many patterns
+              <li>Definition & discovery
+              <li>Clever pipes (ESBs?!?)
+            </li>
           </section>
           <section>
-            <br>
-            <p>Message Queues</p>
-          </section>
-          <section>
-            <br>
-            <p>Event Streams</p>
+            <p class="topic">Operations</p>
+            <ul>
+              <li>Monitoring
+              <li>Versioning
+              <li>Failure & recovery
+              <li>Scale
+            </li>
           </section>
           <section>
             <a class="homelink" href="#/menu">home</a>
@@ -179,12 +185,61 @@
         </section>
 
 
-        <section id="concerns" class="title">
-          <h2>What makes it hard</h2>
+        <section id="options" class="title">
+          <h2>Technology</h2>
           <hr>
           <section>
+            <br>
+            <p class="topic">Message Feeds</p><br>
+            <ul>
+              <li>RSS/Atom - A standard for publishing machine & human consumable web content
+              <li>Data - headlines, articles, blog entries, tweets
+              <li>Metadata - tag, author, copyright, date
+            </ul>
           </section>
-          <a class="homelink" href="#/menu">home</a>
+          <section>
+            <br>
+            <p class="topic">RSS Example</p>
+            <img src="pics/rss_feed.png" alt="RSS feed" height="550"/>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Message Queues</p><br>
+            <ul>
+              <li>Enterprise - Websphere MQ, OEMS (JMS)
+              <li>Open Source - RabbitMQ, ActiveMQ (AMQP)
+              <li>Distributed - ZeroMQ (libzmq), <span style="text-decoration: line-through">Kestrel</span>
+            </ul>
+          </section>
+          <section>
+            <br>
+            <p class="topic">RabbitMQ & AMQP</p>
+            <p style="font-size: 0.8em">Connection, Channel, Exchange, Queue</p>
+            <img src="pics/rabbitmq_routing.png" alt="RabbitMQ Routing" width="600px"/>
+            <p style="font-size: 0.4em">https://www.rabbitmq.com/tutorials/amqp-concepts.html</p>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Example</p>
+            <img src="pics/rabbitmq_ruby_proxy.png" alt="RabbitMQ ruby code example" width="720px"/>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Message Brokers</p><br>
+            <ul>
+              <li>Log data stores - Apache Kafka, DistributedLog
+              <li>Streaming systems - Amazon Kinesis, Kafka Streams
+            </ul>
+          </section>
+          <section>
+            <br>
+            <p class="topic">How fast</p>
+            <img src="pics/kafka_vs_kinesis.png" alt="Kafka_vs_kinesis" width="800px"/>
+            <p style="font-size: 0.4em">https://blog.insightdatascience.com/ingestion-comparison-kafka-vs-kinesis-4c7f5193a7cd#.s3ex81ith</p>
+          </section>
+          <section>
+            <a class="homelink" href="#/menu">home</a>
+          </section>
         </section>
 
 
