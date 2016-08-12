@@ -1,8 +1,11 @@
+require 'securerandom'
+
 class RssPost
 
-	attr_accessor :channel, :version, :title, :body, :created_at
+	attr_accessor :guid, :channel, :version, :title, :body, :created_at
 
   def initialize(channel, version, title, body)
+  	@guid = SecureRandom.uuid
   	@channel = channel
   	@version = version
   	@title = title
@@ -12,6 +15,7 @@ class RssPost
 
   def as_json()
     {
+      guid: @guid,
       channel: @channel,
       version: @version,
       title: @title,

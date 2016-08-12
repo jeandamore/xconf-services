@@ -3,11 +3,14 @@ require 'json'
 
 require_relative 'email_model'
 require_relative 'email_repository'
+require_relative 'rss_reader'
+require_relative 'configuration'
 
 class EmailService < Sinatra::Base
 
   def initialize
     @repository = EmailRepository.instance
+    @reader = RssReader.new(Configuration.value :rss_service)
   end
 
   before do
@@ -34,6 +37,19 @@ class EmailService < Sinatra::Base
       port: ENV['RACK_PORT'],
       emails: @repository.emails.map { |e| e.id } 
     })
+    status 200
+  end
+
+  get '/rss/:channel' do
+    @reader.read(params['channel']).each do |item|
+      email = EmailModel.new(
+        'rss@xconf.com', 
+        item.title, 
+        'Welcome', 
+        item.description
+      )
+      @repository.add(email)
+    end
     status 200
   end
 

@@ -16,6 +16,11 @@ describe 'EmailService' do
     expect(last_response.status).not_to eq(404)
   end
 
+  it "shoud have a GET rss feed endpoint" do
+    get '/rss/channel'
+    expect(last_response.status).not_to eq(404)
+  end
+
   it "shoud have a POST email endpoint" do
     post '/'
     expect(last_response.status).not_to eq(404)
