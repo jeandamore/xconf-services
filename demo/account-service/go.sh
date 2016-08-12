@@ -11,6 +11,7 @@ rvm gemset create $SERVICE_NAME
 rvm gemset use $SERVICE_NAME
 
 build() {
+	bundle install
 	docker build -t $SERVICE_NAME .
 }
 
