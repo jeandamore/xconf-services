@@ -6,7 +6,6 @@ export RACK_ENV=production
 export SERVICE_NAME=$(basename "$PWD")
 
 rvm use 2.3.1
-rvm current
 rvm gemset create $SERVICE_NAME
 rvm gemset use $SERVICE_NAME
 
@@ -31,9 +30,20 @@ health() {
 	curl -f http://$SERVICE_NAME:$RACK_PORT/health
 }
 
-preflight() {
-	clean	
-	rvm gemset use $SERVICE_NAME
+test() { 
+	echo "Not implemented"
+}
+
+spec() { 
+	echo "Not implemented"
+}
+
+pact() { 
+	echo "Not implemented"
+}
+
+preflight() {	
+	clean
 	bundle install
 	bundle exec rake
 	build
@@ -45,19 +55,6 @@ preflight() {
 
 start() {
 	bundle exec rake server:run 
-}
-
-test() {	
-	spec
-	pact
-}
-
-spec() {	
-	bundle exec rake spec
-}
-
-pact() {	
-	bundle exec rake pact
 }
 
 if [ $# -eq 0 ]; then
@@ -74,5 +71,5 @@ elif ([ $1 == "build" 		] \
 	||  [ $1 == "test" 			]); then
 	$1
 else
-	echo "Usage: go.sh [build|clean|health|pact|preflight|proxy|run|start|spec|test] "
+	echo "Usage: go.sh [build|clean|health|pact|preflight|proxy|run|start|spec|test]"
 fi

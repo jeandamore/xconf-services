@@ -5,6 +5,11 @@ export RACK_PORT=8080
 export RACK_ENV=production
 export SERVICE_NAME=$(basename "$PWD")
 
+rvm use 2.3.1
+rvm current
+rvm gemset create $SERVICE_NAME
+rvm gemset use $SERVICE_NAME
+
 build() {
 	docker build -t $SERVICE_NAME .
 }
@@ -28,8 +33,6 @@ health() {
 
 preflight() {	
 	clean
-	rvm use 2.3.1
-	rvm gemset create $SERVICE_NAME
 	rvm gemset use $SERVICE_NAME
 	bundle install
 	bundle exec rake
@@ -61,6 +64,7 @@ test() {
 	spec
 	pact
 }
+
 
 if [ $# -eq 0 ]; then
 	preflight

@@ -1,9 +1,10 @@
 #!/bin/bash
 
 declare -a services=(			\
-	'registration-service'	\
-	'account-service' 			\
-	'email-service' 				\
+	'registration-service'  \
+	# 'account-service' 			\
+	# 'email-service' 				\
+	# 'rss-service' 				\
 	)
 
 init() {
@@ -93,6 +94,7 @@ _health() {
 _spec() {
 	echo "Will spec $1" 
 	pushd $1 >> /dev/null
+	bundle install
 	./go.sh spec
 	popd >> /dev/null 
 	echo "" 
@@ -101,6 +103,7 @@ _spec() {
 _pact() {
 	echo "Will pact $1" 
 	pushd $1 >> /dev/null
+	bundle install
 	./go.sh pact
 	popd >> /dev/null 
 	echo "" 
