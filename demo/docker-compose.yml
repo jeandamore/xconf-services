@@ -17,6 +17,17 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbit
+    container_name: rabbit
+    environment:
+      ERLANG_COOKIE: abcdefg
+      VIRTUAL_HOST: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   registration-service:
     image: registration-service
     ports: 

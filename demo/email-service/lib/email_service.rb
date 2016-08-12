@@ -5,12 +5,14 @@ require_relative 'email_model'
 require_relative 'email_repository'
 require_relative 'rss_reader'
 require_relative 'configuration'
+require_relative 'rabbitmq_proxy'
 
 class EmailService < Sinatra::Base
 
   def initialize
     @repository = EmailRepository.instance
     @reader = RssReader.new(Configuration.value :rss_service)
+    @rabbitmq = RabbitMqProxy.new(Configuration.value :rabbitmq)
   end
 
   before do
@@ -50,6 +52,19 @@ class EmailService < Sinatra::Base
       )
       @repository.add(email)
     end
+    status 200
+  end
+
+  get '/rabbitmq/user' do
+    @rabbitmq.receive('user') { | email |
+      email = EmailModel.new(
+        'rss@xconf.com', 
+        email, 
+        'Welcome', 
+        'Welcome'
+      )
+      @repository.add(email)
+    }
     status 200
   end
 

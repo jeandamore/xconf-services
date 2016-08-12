@@ -6,11 +6,13 @@ class Configuration
 
     :development => {
     	:account_service => 'http://account-service:8080',
-      :email_service => 'http://email-service:8080'
+      :email_service => 'http://email-service:8080',
+      :rabbitmq => 'rabbitmq'
    	},
     :production => {
     	:account_service => 'http://account.corsamore.com',
-      :email_service => 'http://email.corsamore.com'
+      :email_service => 'http://email.corsamore.com',
+      :rabbitmq => 'rabbitmq.corsamore.com'
     }
 
   })
