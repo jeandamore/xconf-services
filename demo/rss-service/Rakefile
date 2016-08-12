@@ -1,8 +1,20 @@
 $: << File.join(File.dirname(__FILE__), "lib")
 
+require 'rspec/core/rake_task'
+require 'pact/tasks'
+
+RSpec::Core::RakeTask.new(:spec, :tag) do |t, task_args|
+    t.rspec_opts = "--format documentation --color"
+end
+
+task :pact_run => 'pact:verify'
+
 namespace :server do
   task :run do
   	puts 'Run the server for ' + ENV['XENVIRONMENT']
     sh 'rackup', '--env', ENV['RACK_ENV'], '--port', ENV['RACK_PORT'], '--server', 'thin'
   end
 end
+
+task :pact => [:pact_run]
+task :default => [:spec, :pact]

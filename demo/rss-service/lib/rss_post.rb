@@ -1,21 +1,22 @@
 class RssPost
 
-	attr_accessor :id, :title, :body, :created_at
+	attr_accessor :channel, :version, :title, :body, :created_at
 
-  def initialize(id, title, body)
+  def initialize(channel, version, title, body)
+  	@channel = channel
+  	@version = version
   	@title = title
     @body = body
-    @id = id
-    @created_at = 'Now'
+    @created_at = Time.new 
   end 
 
   def as_json()
     {
-      id: @id,
-      from: @from,
-      to: @to,
-      subject: @subject,
-      body: @body
+      channel: @channel,
+      version: @version,
+      title: @title,
+      body: @body,
+      created_at: @created_at
     }
   end 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export XENVIRONMENT=${XENVIRONMENT:-development}
-export RACK_PORT=8080
+export RACK_PORT=3001
 export RACK_ENV=production
 export SERVICE_NAME=$(basename "$PWD")
 
@@ -31,16 +31,17 @@ health() {
 	curl -f http://$SERVICE_NAME:$RACK_PORT/health
 }
 
-test() { 
-	echo "Not implemented"
+test() {	
+	spec
+	pact
 }
 
-spec() { 
-	echo "Not implemented"
+spec() {	
+	bundle exec rake spec
 }
 
-pact() { 
-	echo "Not implemented"
+pact() {	
+	bundle exec rake pact
 }
 
 preflight() {	

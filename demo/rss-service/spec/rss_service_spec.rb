@@ -17,7 +17,12 @@ describe 'RssService' do
   end
 
   it "shoud have a GET RSS feed endpoint" do
-    get '/rss'
+    get '/'
+    expect(last_response.status).not_to eq(404)
+  end
+
+  it "shoud have a POST RSS feed endpoint" do
+    post '/'
     expect(last_response.status).not_to eq(404)
   end
 

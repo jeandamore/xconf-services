@@ -1,5 +1,5 @@
 
-- implement use case : registration -> account -> email
+
 - versioning
 - account and email services pact into registration service
 - service template
