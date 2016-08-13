@@ -108,19 +108,17 @@
 
 
         <section id="scaling" class="title">
-          <h2>Scaling what?</h2>
+          <h2>Scale what?</h2>
           <hr>
           <section>
-            <p class="topic">Users<p>
-            <img src="pics/tron.png" alt="tron" width="700"/>
+            <br>
+            <p class="topic">Architecture for Scale<p>
+            <img src="pics/scale_architecture.png" alt="Scale architecture" width="800"/>
           </section>
           <section>
-            <p class="topic">Features<p>
-            <img src="pics/tron_android.png" alt="tron_android" height="400"/>
-          </section>
-          <section>
-            <p class="topic">Speed<p>
-            <img src="pics/tron_speed.jpg" alt="tron_speed" width="700"/>
+            <br>
+            <p class="topic">Architecture for Scale [cont.]<p>
+            <img src="pics/scale_architecture_2.png" alt="Scale architecture" width="800"/>
           </section>
           <section>
             <a class="homelink" href="#/menu">home</a>
@@ -177,6 +175,7 @@
               <li>Versioning
               <li>Failure & recovery
               <li>Scale
+              <li>Speed
             </li>
           </section>
           <section>
@@ -221,7 +220,8 @@
           <section>
             <br>
             <p class="topic">Example</p>
-            <img src="pics/rabbitmq_ruby_proxy.png" alt="RabbitMQ ruby code example" width="720px"/>
+            <img src="pics/rabbitmq_ruby_proxy.png" alt="RabbitMQ ruby code example" width="640px"/>
+            <p style="font-size: 0.4em">https://github.com/jeandamore/xconf-services/blob/master/demo/email-service/lib/rabbitmq_proxy.rb</p>
           </section>
           <section>
             <br>
@@ -247,8 +247,105 @@
           <h2>Implementation</h2>
           <hr>
           <section>
+            <br>
+            <p class="topic">Discovery</p>
+            <p style="font-size: 0.8em">API Management with Consul</p>
+            <img src="pics/consul.png" alt="consul" width="640px"/>
           </section>
-          <a class="homelink" href="#/menu">home</a>
+          <section>
+            <br>
+            <p class="topic">Dependencies</p>
+            <p style="font-size: 0.8em">Dependency Management with Pact Broker</p>
+            <img src="pics/pact_broker.png" alt="pact broker" width="580px"/>
+            <p style="font-size: 0.4em">https://github.com/bethesque/pact_broker</p>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Dependencies [cont.]</p>
+            <p style="font-size: 0.8em">Configuration</p>
+            <p style="font-size: 0.6em">Orchestration</p>
+            <pre style="font-size: 0.4em">
+                  {
+                    :account_service => 'account-service-v1.2.0',
+                    :email_service => 'email-service-v2.2.0'
+                  }
+            </pre>
+            <p style="font-size: 0.6em">Choreography</p>
+            <pre style="font-size: 0.4em">
+                  {
+                    :broker => 'rabbitmq',
+                    :queue => 'registered-v1.1.0'
+                  }
+
+            </pre>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Dependencies [cont.]</p>
+            <p style="font-size: 0.8em">RabbitMQ Management Console</p>
+            <img src="pics/rabbitmq_consumers.png" alt="RabbitMQ consumers" width="600px"/>
+          </section>
+          <section>
+            <table style="font-size: 0.6em">
+              <tr>
+                <th></th>
+                <th>Dicovery</th>
+                <th>Dependency</th>
+                <th>Versioning</th>
+                <th>Recovery</th>
+                <th>Scale</th>
+                <th>Speed</th>
+              </tr>
+              <tr>
+                <th>Orchestration<br><span style="font-size: 0.7em">(e.g. REST/HTTP)</span></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Web Feeds<br><span style="font-size: 0.7em">(e.g. Atom)</span></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Message Queues<br><span style="font-size: 0.7em">(e.g. RabbitMQ)</span></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Log Data Stores<br><span style="font-size: 0.7em">(e.g. Kafka)</span></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Event Streams<br><span style="font-size: 0.7em">(e.g. Kinesis)</span></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <a class="homelink" href="#/menu">home</a>
+          </section>
         </section>
 
 
@@ -256,8 +353,14 @@
           <h2>Conclusion</h2>
           <hr>
           <section>
+            <ul>
+              <li>No scale -> no choreography
+              <li>No choreography -> no scale
+            </ul>
           </section>
-          <a class="homelink" href="#/menu">home</a>
+          <section>
+            <a class="homelink" href="#/menu">home</a>
+          </section>
         </section>
 
       </div>
