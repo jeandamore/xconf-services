@@ -117,7 +117,7 @@
           </section>
           <section>
             <br>
-            <p class="topic">Architecture for Scale [cont.]<p>
+            <p class="topic">Architecture for Scale<p>
             <img src="pics/scale_architecture_2.png" alt="Scale architecture" width="800"/>
           </section>
           <section>
@@ -173,9 +173,8 @@
             <ul>
               <li>Monitoring
               <li>Versioning
-              <li>Failure & recovery
+              <li>Recovery
               <li>Scale
-              <li>Speed
             </li>
           </section>
           <section>
@@ -248,30 +247,43 @@
           <hr>
           <section>
             <br>
-            <p class="topic">Discovery</p>
-            <p style="font-size: 0.8em">API Management with Consul</p>
-            <img src="pics/consul.png" alt="consul" width="640px"/>
+            <p class="topic">Meet the Fockers</p><br>
+            <img src="pics/implementation_intro.png" alt="consul"/>
           </section>
           <section>
             <br>
-            <p class="topic">Dependencies</p>
-            <p style="font-size: 0.8em">Dependency Management with Pact Broker</p>
-            <img src="pics/pact_broker.png" alt="pact broker" width="580px"/>
-            <p style="font-size: 0.4em">https://github.com/bethesque/pact_broker</p>
+            <p class="topic">Code</p>
+            <p style="font-size: 0.8em">Orchestration</p>
+            <pre style="font-size: 0.5em">
+              post '/' do
+                if @account_service.get(params[:email.to_s]).code == 200
+                  status 422
+                else
+                  status @account_service.post(params[:email.to_s]).code
+                  @email_service.post(params[:email.to_s])
+                end
+              end
+            </pre>
+            <p style="font-size: 0.8em">Choreography</p>
+            <pre style="font-size: 0.5em">
+              post '/' do
+                @q.post(Configuration.value(:queue), params[:email.to_s])
+                status 201
+              end
+            </pre>
           </section>
           <section>
             <br>
-            <p class="topic">Dependencies [cont.]</p>
-            <p style="font-size: 0.8em">Configuration</p>
-            <p style="font-size: 0.6em">Orchestration</p>
-            <pre style="font-size: 0.4em">
+            <p class="topic">Configuration</p>
+            <p style="font-size: 0.8em">Orchestration</p>
+            <pre style="font-size: 0.6em">
                   {
                     :account_service => 'account-service-v1.2.0',
                     :email_service => 'email-service-v2.2.0'
                   }
             </pre>
-            <p style="font-size: 0.6em">Choreography</p>
-            <pre style="font-size: 0.4em">
+            <p style="font-size: 0.8em">Choreography</p>
+            <pre style="font-size: 0.6em">
                   {
                     :broker => 'rabbitmq',
                     :queue => 'registered-v1.1.0'
@@ -281,67 +293,47 @@
           </section>
           <section>
             <br>
-            <p class="topic">Dependencies [cont.]</p>
-            <p style="font-size: 0.8em">RabbitMQ Management Console</p>
-            <img src="pics/rabbitmq_consumers.png" alt="RabbitMQ consumers" width="600px"/>
+            <p class="topic">Testing</p>
+            <p style="font-size: 0.8em">Orchestration</p>
+            <ul>
+              <li>Mocks (HttpMock, Mountebank)
+              <li>Contracts (Pact, Pacto)
+              <li>Client Stubs
+            </ul>
           </section>
           <section>
-            <table style="font-size: 0.6em">
-              <tr>
-                <th></th>
-                <th>Dicovery</th>
-                <th>Dependency</th>
-                <th>Versioning</th>
-                <th>Recovery</th>
-                <th>Scale</th>
-                <th>Speed</th>
-              </tr>
-              <tr>
-                <th>Orchestration<br><span style="font-size: 0.7em">(e.g. REST/HTTP)</span></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Web Feeds<br><span style="font-size: 0.7em">(e.g. Atom)</span></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Message Queues<br><span style="font-size: 0.7em">(e.g. RabbitMQ)</span></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Log Data Stores<br><span style="font-size: 0.7em">(e.g. Kafka)</span></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Event Streams<br><span style="font-size: 0.7em">(e.g. Kinesis)</span></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </table>
+            <br>
+            <p class="topic">Testing</p>
+            <p style="font-size: 0.8em">Choreography</p>
+            <img src="pics/implementation_pact_choreo.png" alt="pact choreography" width="850px"/>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Dependencies</p>
+            <p style="font-size: 0.8em">Pact Broker</p>
+            <img src="pics/pact_broker.png" alt="pact broker" width="580px"/>
+            <p style="font-size: 0.4em">https://github.com/bethesque/pact_broker</p>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Dependencies</p>
+            <p style="font-size: 0.8em">RabbitMQ Admin Console</p>
+            <img src="pics/implementation_rabbit_msg.png" alt="RabbitMQ message" width="500px"/>
+            <img src="pics/implementation_rabbit_consumers.png" alt="RabbitMQ message" width="550px"/>
+          </section>
+          <section>
+            <br>
+            <p class="topic">Others</p>
+            <ul>
+              <li>Versioning
+              <li>Monitoring
+              <li>Durability
+              <li>Reliability
+              <li>Ordering
+              <li>Competing consumers
+              <li>Scaling the middleware
+              <li>Ownership
+            </ul>
           </section>
           <section>
             <a class="homelink" href="#/menu">home</a>
@@ -354,8 +346,8 @@
           <hr>
           <section>
             <ul>
-              <li>No scale -> no choreography
-              <li>No choreography -> no scale
+              <li>Choreography and orchestration will leave together
+              <li>(Where) do you need to architect for scale?
             </ul>
           </section>
           <section>

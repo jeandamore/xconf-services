@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/5/2 -->
+<html class=" js no-mobile desktop no-ie chrome chrome52 users-section jdamore-section dev-section projects-section xconf-services-section presentation-section w-1269 gt-240 gt-320 gt-480 gt-640 gt-768 gt-800 gt-1024 lt-1280 lt-1440 lt-1680 lt-1920 no-portrait landscape gradient rgba opacity textshadow multiplebgs boxshadow borderimage borderradius cssreflections csstransforms csstransitions no-touch retina fontface domloaded" id="index-page"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>ThoughtWorks Australia XConf 2016</title>
+
+    <meta name="description" content="ThoughtWorks Australia XConf 2016">
+    <meta name="author" content="Jean D&#39;Amore">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./ThoughtWorks Australia XConf 2016_files/reveal.css">
+    <link rel="stylesheet" href="./ThoughtWorks Australia XConf 2016_files/thoughtworks.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="./ThoughtWorks Australia XConf 2016_files/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./ThoughtWorks Australia XConf 2016_files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]--><script type="text/javascript" src="./ThoughtWorks Australia XConf 2016_files/zoom.js"></script><script type="text/javascript" src="./ThoughtWorks Australia XConf 2016_files/notes.js"></script>
+  </head>
+	<body style="transition: -webkit-transform 0.8s ease;">
+    <div class="reveal slide center" role="application" data-transition-speed="default" data-background-transition="fade">
+      <div class="footer">
+        Copyright (c) ThoughtWorks 2015-2016.  Provided for personal use only and not to be copied or distributed.
+       </div>
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.771429);">
+
+        <section class="title past" hidden="" aria-hidden="true" style="top: 330px; display: none;">
+          <h1>Scaling Services with Choreography</h1>
+          <h2>ThoughtWorks Australia XConf 2016</h2>
+          <h3></h3>
+        </section>
+
+        <section id="menu" class="menu past" hidden="" aria-hidden="true" style="top: 330px; display: none;">
+          <h2> CONTENT </h2>
+          <table style="font-size:0.8em">
+            <thead class="purple">
+              <tr>
+                <th>
+                </th>
+                <th>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><a href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/context">Context</a></strong></td>
+                <td>Why I chose this subject</td>
+              </tr>
+              <tr>
+                <td><strong><a href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/scaling">Scaling</a></strong></td>
+                <td>Aspects of scale</td>
+              </tr>
+              <tr>
+                <td><strong><a href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/definitions">Definitions</a></strong></td>
+                <td>Choreography vs orchestration</td>
+              </tr>
+              <tr>
+                <td><strong><a href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/concerns">Concerns</a></strong></td>
+                <td>What makes it hard</td>
+              </tr>
+              <tr>
+                <td><strong><a href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/options">Options</a></strong></td>
+                <td>What technology choices do we have</td>
+              </tr>
+              <tr>
+                <td><strong><a href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/implementation">Implementation</a></strong></td>
+                <td>Naming, versioning, failures, concurrency</td>
+              </tr>
+              <tr>
+                <td><strong><a href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/conclusion">Conclusion</a></strong></td>
+                <td>Something really deep</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+
+        <section id="context" class="title stack past" hidden="" aria-hidden="true" style="top: 330px; display: none;">
+          <h2>Be afraid of the Death Star</h2>
+          <hr>
+          <section style="top: 330px; display: none;">
+            <br><br>
+            <img src="./ThoughtWorks Australia XConf 2016_files/death-star.png" alt="death-star" height="450">
+            <p style="font-size: 0.3em; font-style: italic">https://twitter.com/adrianco/status/441883572618948608</p>
+            <p style="font-size: 0.8em">Dealing with business processes that stretch across <br>the boundary of individual services is hard</p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <a class="homelink" href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/menu">home</a>
+          </section>
+        </section>
+
+
+        <section id="scaling" class="title stack past" hidden="" aria-hidden="true" style="top: 0px; display: block;">
+          <h2>Scale what?</h2>
+          <hr>
+          <section style="top: 0px; display: block;">
+            <br>
+            <p class="topic">Architecture for Scale</p><p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/scale_architecture.png" alt="Scale architecture" width="800">
+          </p></section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Architecture for Scale</p><p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/scale_architecture_2.png" alt="Scale architecture" width="800">
+          </p></section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <a class="homelink" href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/menu">home</a>
+          </section>
+        </section>
+
+
+        <section id="defintions" class="title stack past" hidden="" aria-hidden="true" style="top: 0px; display: block;">
+          <h2>Choreography vs orchestration</h2>
+          <hr>
+          <section style="top: 1.5px; display: block;">
+          <br>
+            <p>Dancers interact with their environment, while the orchestra follows the conductor.</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/orchestra_and_dancers.jpg" alt="Orchestra and dancers">
+            <p style="font-size: 0.3em; font-style: italic">Sydney Symphony Orchestra and Sydney Dance Company in the production Elektra (Source: The Australian)</p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 31px; display: block;">
+            <br>
+            <p class="topic">Orchestration</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/orchestration_glyph.png" alt="orchestration glyphs">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Choreography</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/choreography_glyph.png" alt="choreography glyphs">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Not Choreography</p><br>
+            <img src="./ThoughtWorks Australia XConf 2016_files/not_choreography_glyph.png" alt="not choreography glyphs">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <a class="homelink" href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/menu">home</a>
+          </section>
+        </section>
+
+
+        <section id="concerns" class="title stack present" style="top: 0px; display: block;" data-previous-indexv="2">
+          <h2>What makes it scary</h2>
+          <hr>
+          <section class="past" style="top: 162.5px; display: block;" hidden="" aria-hidden="true">
+            <p class="topic">Architecture</p>
+            <ul>
+              <li>Asynchronous
+              </li><li>No standard, many patterns
+              </li><li>Definition &amp; discovery
+              </li><li>Clever pipes (ESBs?!?)
+            </li>
+          </ul></section>
+          <section class="past" style="top: 162.5px; display: block;" hidden="" aria-hidden="true">
+            <p class="topic">Operations</p>
+            <ul>
+              <li>Monitoring
+              </li><li>Versioning
+              </li><li>Recovery
+              </li><li>Scale
+            </li>
+          </ul></section>
+          <section class="present" style="top: 285.5px; display: block;">
+            <a class="homelink" href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/menu">home</a>
+          </section>
+        </section>
+
+
+        <section id="options" class="title stack future" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+          <h2>Technology</h2>
+          <hr>
+          <section class="" style="top: 113.5px; display: block;" aria-hidden="true">
+            <br>
+            <p class="topic">Message Feeds</p><br>
+            <ul>
+              <li>RSS/Atom - A standard for publishing machine &amp; human consumable web content
+              </li><li>Data - headlines, articles, blog entries, tweets
+              </li><li>Metadata - tag, author, copyright, date
+            </li></ul>
+          </section>
+          <section class="future" style="top: 0px; display: block;" hidden="" aria-hidden="true">
+            <br>
+            <p class="topic">RSS Example</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/rss_feed.png" alt="RSS feed" height="550">
+          </section>
+          <section class="future" aria-hidden="true" hidden="" style="top: 138px; display: none;">
+            <br>
+            <p class="topic">Message Queues</p><br>
+            <ul>
+              <li>Enterprise - Websphere MQ, OEMS (JMS)
+              </li><li>Open Source - RabbitMQ, ActiveMQ (AMQP)
+              </li><li>Distributed - ZeroMQ (libzmq), <span style="text-decoration: line-through">Kestrel</span>
+            </li></ul>
+          </section>
+          <section class="future" aria-hidden="true" hidden="" style="top: 46.5px; display: none;">
+            <br>
+            <p class="topic">RabbitMQ &amp; AMQP</p>
+            <p style="font-size: 0.8em">Connection, Channel, Exchange, Queue</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/rabbitmq_routing.png" alt="RabbitMQ Routing" width="600px">
+            <p style="font-size: 0.4em">https://www.rabbitmq.com/tutorials/amqp-concepts.html</p>
+          </section>
+          <section class="future" aria-hidden="true" hidden="" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Example</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/rabbitmq_ruby_proxy.png" alt="RabbitMQ ruby code example" width="640px">
+            <p style="font-size: 0.4em">https://github.com/jeandamore/xconf-services/blob/master/demo/email-service/lib/rabbitmq_proxy.rb</p>
+          </section>
+          <section class="future" aria-hidden="true" hidden="" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Message Brokers</p><br>
+            <ul>
+              <li>Log data stores - Apache Kafka, DistributedLog
+              </li><li>Streaming systems - Amazon Kinesis, Kafka Streams
+            </li></ul>
+          </section>
+          <section class="future" aria-hidden="true" hidden="" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">How fast</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/kafka_vs_kinesis.png" alt="Kafka_vs_kinesis" width="800px">
+            <p style="font-size: 0.4em">https://blog.insightdatascience.com/ingestion-comparison-kafka-vs-kinesis-4c7f5193a7cd#.s3ex81ith</p>
+          </section>
+          <section class="future" aria-hidden="true" hidden="" style="top: 330px; display: none;">
+            <a class="homelink" href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/menu">home</a>
+          </section>
+        </section>
+
+
+        <section id="implementation" class="title stack future" hidden="" aria-hidden="true" style="top: 0px; display: block;">
+          <h2>Implementation</h2>
+          <hr>
+          <section style="top: 54px; display: block;">
+            <br>
+            <p class="topic">Meet the Fockers</p><br>
+            <img src="./ThoughtWorks Australia XConf 2016_files/implementation_intro.png" alt="consul">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 3px; display: none;">
+            <br>
+            <p class="topic">Code</p>
+            <p style="font-size: 0.8em">Orchestration</p>
+            <pre style="font-size: 0.5em">              post '/' do
+                if @account_service.get(params[:email.to_s]).code == 200
+                  status 422
+                else
+                  status @account_service.post(params[:email.to_s]).code
+                  @email_service.post(params[:email.to_s])
+                end
+              end
+            </pre>
+            <p style="font-size: 0.8em">Choreography</p>
+            <pre style="font-size: 0.5em">              post '/' do
+                @q.post(Configuration.value(:queue), params[:email.to_s])
+                status 201
+              end
+            </pre>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Configuration</p>
+            <p style="font-size: 0.8em">Orchestration</p>
+            <pre style="font-size: 0.6em">                  {
+                    :account_service =&gt; 'account-service-v1.2.0',
+                    :email_service =&gt; 'email-service-v2.2.0'
+                  }
+            </pre>
+            <p style="font-size: 0.8em">Choreography</p>
+            <pre style="font-size: 0.6em">                  {
+                    :broker =&gt; 'rabbitmq',
+                    :queue =&gt; 'registered-v1.1.0'
+                  }
+
+            </pre>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Testing</p>
+            <p style="font-size: 0.8em">Orchestration</p>
+            <ul>
+              <li>Mocks (HttpMock, Mountebank)
+              </li><li>Contracts (Pact, Pacto)
+              </li><li>Client Stubs
+            </li></ul>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Testing</p>
+            <p style="font-size: 0.8em">Choreography</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/implementation_pact_choreo.png" alt="pact choreography" width="850px">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Dependencies</p>
+            <p style="font-size: 0.8em">Pact Broker</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/pact_broker.png" alt="pact broker" width="580px">
+            <p style="font-size: 0.4em">https://github.com/bethesque/pact_broker</p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Dependencies</p>
+            <p style="font-size: 0.8em">RabbitMQ Admin Console</p>
+            <img src="./ThoughtWorks Australia XConf 2016_files/implementation_rabbit_msg.png" alt="RabbitMQ message" width="500px">
+            <img src="./ThoughtWorks Australia XConf 2016_files/implementation_rabbit_consumers.png" alt="RabbitMQ message" width="550px">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <br>
+            <p class="topic">Others</p>
+            <ul>
+              <li>Versioning
+              </li><li>Monitoring
+              </li><li>Durability
+              </li><li>Reliability
+              </li><li>Ordering
+              </li><li>Competing consumers
+              </li><li>Scaling the middleware
+              </li><li>Ownership
+            </li></ul>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <a class="homelink" href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/menu">home</a>
+          </section>
+        </section>
+
+
+        <section id="conclusion" class="title stack future" hidden="" aria-hidden="true" style="top: 0px; display: none;">
+          <h2>Conclusion</h2>
+          <hr>
+          <section style="top: 261px; display: none;">
+            <ul>
+              <li>Choreography and orchestration will leave together
+              </li><li>(Where) do you need to architect for scale?
+            </li></ul>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <a class="homelink" href="file:///Users/jdamore/dev/projects/xconf-services/presentation/index.html#/menu">home</a>
+          </section>
+        </section>
+
+      </div>
+    <div class="backgrounds"><div class="slide-background title past" style="display: none;"></div><div class="slide-background menu past" style="display: none;"></div><div class="slide-background title stack past" style="display: none;"><div class="slide-background past" style="display: none;"></div><div class="slide-background present" style="display: none;"></div></div><div class="slide-background title stack past" data-loaded="true" style="display: block;"><div class="slide-background past" data-loaded="true" style="display: block;"></div><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background title stack past" data-loaded="true" style="display: block;"><div class="slide-background past" data-loaded="true" style="display: block;"></div><div class="slide-background present" data-loaded="true" style="display: block;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background title stack present" data-loaded="true" style="display: block;"><div class="slide-background past" data-loaded="true" style="display: block;"></div><div class="slide-background past" data-loaded="true" style="display: block;"></div><div class="slide-background present" data-loaded="true" style="display: block;"></div></div><div class="slide-background title stack future" data-loaded="true" style="display: block;"><div class="slide-background present" data-loaded="true" style="display: block;"></div><div class="slide-background future" data-loaded="true" style="display: block;"></div><div class="slide-background future" data-loaded="true" style="display: none;"></div><div class="slide-background future" data-loaded="true" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background title stack future" data-loaded="true" style="display: block;"><div class="slide-background past" data-loaded="true" style="display: block;"></div><div class="slide-background present" data-loaded="true" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background title stack future" data-loaded="true" style="display: none;"><div class="slide-background past" data-loaded="true" style="display: none;"></div><div class="slide-background present" style="display: none;"></div></div></div><div class="progress" style="display: block;"><span style="width: 538.364px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left enabled" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up enabled" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: none;"></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+            home
+          </div></div>
+
+
+    <script src="./ThoughtWorks Australia XConf 2016_files/head.min.js"></script>
+    <script src="./ThoughtWorks Australia XConf 2016_files/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        hideAddressBar: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        minScale: 0.5,
+        maxScale: 2, // Give us some headroom to zoom in
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+
+	
+
+</body></html>
