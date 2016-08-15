@@ -1,11 +1,12 @@
 #!/bin/bash
 
-declare -a services=(			\
-	'registration-service'  \
-	'account-service' 			\
-	'email-service' 				\
-	'rss-service' 				\
-	)
+declare -a services=(					\
+	'registration-service'  		\
+	'registration-service-v2'  	\
+	'account-service' 					\
+	'email-service' 						\
+	'rss-service' 							\
+)
 
 init() {
 	clean

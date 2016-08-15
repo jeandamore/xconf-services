@@ -2,14 +2,12 @@ require 'sinatra/base'
 require 'json'
 
 require_relative 'configuration'
-require_relative 'account_service_proxy'
-require_relative 'email_service_proxy'
+require_relative 'rabbitmq_proxy'
 
 class RegistrationService < Sinatra::Base
 
   def initialize
-    @account_service = AccountServiceProxy.new(Configuration.value :account_service)
-    @email_service = EmailServiceProxy.new(Configuration.value :email_service)
+    @rabbitmq = RabbitMqProxy.new(Configuration.value :rabbitmq)
   end
 
   before do
@@ -32,18 +30,14 @@ class RegistrationService < Sinatra::Base
   get '/health' do
     content_type :json
     body JSON.generate({
-      message: "Registration Service is up",
+      message: "Registration Service v2 is up",
       port: ENV['RACK_PORT'] 
     })
   end
 
   post '/' do
-    if @account_service.get(params[:email.to_s]).code == 200
-      status 422
-    else
-      status @account_service.post(params[:email.to_s]).code
-      @email_service.post('registration@thoughtworks.com', params[:email.to_s], 'Welcome', 'Thanks for registering with us!')
-    end
+    @rabbitmq.post(Configuration.value(:queue), params[:email.to_s])
+    status 201
   end
 
 end

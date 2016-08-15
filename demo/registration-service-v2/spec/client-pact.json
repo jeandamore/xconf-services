@@ -1,0 +1,64 @@
+{
+  "consumer": {
+    "name": "client"
+  },
+  "provider": {
+    "name": "registration-service"
+  },
+  "interactions": [
+    {
+      "description": "a health check request",
+      "provider_state": "the service is ready",
+      "request": {
+        "method": "get",
+        "path": "/health",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Registration Service is up"
+        }
+      }
+    },
+    {
+      "description": "a registration request",
+      "provider_state": "new user",
+      "request": {
+        "method": "post",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body":  {
+          "email": "new_user@email.com"
+        }
+      },
+      "response": {
+        "status": 201
+      }
+    },
+    {
+      "description": "a registration request",
+      "provider_state": "user already exists",
+      "request": {
+        "method": "post",
+        "path": "/",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body":  {
+          "email": "existing_user@email.com"
+        }
+      },
+      "response": {
+        "status": 422
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "2.0.0"
+  }
+}
